@@ -1,0 +1,9 @@
+streamlit>=1.50
+pandas
+numpy
+scipy
+plotly
+openpyxl
+reportlab
+matplotlib
+pillow
