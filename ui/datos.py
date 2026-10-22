@@ -57,7 +57,7 @@ _CONFIG = {
 
 
 def tabla_excel(df: pd.DataFrame) -> pd.DataFrame:
-    """Cálculo determinístico con el MISMO formato del Excel: conceptos en filas, zonas en columnas y columna Total."""
+    """Cálculo determinístico con Excel: conceptos en filas, zonas en columnas y columna Total."""
     det = tabla_determinista(df)
     tot = totales_deterministas(df)
     zonas = det["Zona"].astype(str).tolist()
@@ -90,7 +90,7 @@ def render_escenarios() -> tuple[dict[str, pd.DataFrame], list[str]]:
     st.markdown(
         "Ingresa **TMS, ley base, recuperación, precio, costo de explotación y certeza geo-operativa** de cada zona. "
         "La **ley estimada** (`ley base × (2 − 1/certeza)`), las onzas, el valorizado, el costo total y la utilidad "
-        "se calculan solos con las fórmulas de tu Excel."
+        "se calculan solos con las fórmulas."
     )
     esc = st.session_state["esc"]
     entradas: dict[str, pd.DataFrame] = {}
@@ -122,7 +122,7 @@ def render_escenarios() -> tuple[dict[str, pd.DataFrame], list[str]]:
                 continue
             entradas[e["nombre"]] = limpio
 
-            st.markdown("**Cálculo determinístico** (mismo formato que tu Excel; la columna Total pondera con las TMS de este escenario)")
+            st.markdown("**Cálculo determinístico**; la columna Total pondera con las TMS de este escenario)")
             st.dataframe(tabla_excel(limpio), hide_index=True, width="stretch")
 
     b1, b2, b3 = st.columns([2, 2, 3])
